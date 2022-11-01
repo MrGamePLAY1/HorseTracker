@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "283385683518",
+    "project_id": "horse-tracker-12271",
+    "storage_bucket": "horse-tracker-12271.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283385683518:android:15c59c45c3f6ab8a2dbb6f",
+        "android_client_info": {
+          "package_name": "com.example.horsetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283385683518-a801d21hm3jgqdtdgj0u0b01ed5t79d3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGks6HZmgEN6rhG9xiQf1UojO9K7vLFhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283385683518-a801d21hm3jgqdtdgj0u0b01ed5t79d3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
