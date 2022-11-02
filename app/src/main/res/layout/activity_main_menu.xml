@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/landingpage"
+    tools:context=".MenuActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="35dp">
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="Horse Tracker"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:textSize="40sp" />
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Welcome [name] to your tracker."
+                android:textSize="16dp"
+                android:textColor="@color/cardview_light_background"/>
+
+            <Button
+                android:id="@+id/viewPlayersButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="80dp"
+                android:text="Field Map"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/horses"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="16dp"
+                android:text="Horses"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/calendarButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="16dp"
+                android:text="Calendar"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/viewEventsButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="View Events"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/viewNoteButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Notes"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/signOutButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="86dp"
+                android:text="Sign Out"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

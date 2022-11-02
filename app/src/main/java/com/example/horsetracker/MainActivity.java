@@ -150,9 +150,6 @@ public class MainActivity extends AppCompatActivity {
                 //All validation checks
                 validationChecker();
 
-
-
-
                 if (!email.equals("") && !pass.equals("")){
                     mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -191,7 +188,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openMenuActivity(){
-        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+
+        //NEED TO CHANGE THIS
+        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
         startActivity(intent);
     }
 

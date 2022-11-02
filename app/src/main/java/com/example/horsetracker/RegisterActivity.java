@@ -194,7 +194,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void openMenuActivity(){
         //FIX
-        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
         startActivity(intent);
     }
 

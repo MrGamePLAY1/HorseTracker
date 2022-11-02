@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#DDE4A70E"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -48,50 +49,47 @@
         <EditText
             android:id="@+id/email"
             android:textColor="#fff"
-            android:textColorHint="#eee"
-            android:paddingStart="10dp"
-            android:paddingLeft="10dp"
+            android:textColorHint="#FFFFFF"
+            android:padding="15dp"
             android:hint="Email"
             android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@drawable/rounded_corner"
             android:textSize="17sp" />
+
         <EditText
+            android:id="@+id/password"
             android:textColor="#fff"
             android:textColorHint="#eee"
-            android:paddingStart="10dp"
-            android:paddingLeft="10dp"
+            android:padding="15dp"
             android:hint="Password"
-            android:id="@+id/password"
             android:inputType="textPassword"
             android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@drawable/rounded_corner"
             android:textSize="17sp" />
+
         <Button
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
-            android:background="@drawable/rounded_corner_button"
-            android:text="sign in"
+            android:layout_marginTop="25dp"
             android:id="@+id/signInButton"
-            android:textColor="#FFFFFF"
             android:layout_width="wrap_content"
-            android:layout_height="35dp" />
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_corner_button"
+            android:padding="5dp"
+            android:text="sign in"
+            android:textColor="#FFFFFF" />
 
 
         <Button
-            android:layout_marginTop="50px"
             android:id="@+id/buttonRegister"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="105dp"
             android:background="@drawable/rounded_corner_button"
-            android:color="#C7000000"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:padding="5dp"
             android:text="Register"
-            android:textColor="#000000" />
-
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 </RelativeLayout>
