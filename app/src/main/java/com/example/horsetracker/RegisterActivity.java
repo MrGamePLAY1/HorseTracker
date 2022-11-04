@@ -23,6 +23,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
     //Message Tag
     private static final String TAG = "RegisterActivity";
@@ -88,15 +90,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        //gets rid of the action bar at the top
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-            Window w = getWindow();
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-
         setContentView(R.layout.activity_register);
 
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         //Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -142,7 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
                         {
-                            onAuthSuccess(task.getResult().getUser());
+                            onAuthSuccess(Objects.requireNonNull(task.getResult().getUser()));
                             toastMessage("Registration Completed!");
                             openMainActivity();
                         }
@@ -168,7 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void onAuthSuccess(FirebaseUser user) {
-        String username = usernameFromEmail(user.getEmail());
+        String username = usernameFromEmail(Objects.requireNonNull(user.getEmail()));
         writeNewUser(user.getUid(), username, user.getEmail());
 
     }
