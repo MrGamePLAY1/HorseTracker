@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class MenuActivity extends AppCompatActivity {
 
 
@@ -34,12 +36,61 @@ public class MenuActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        // Firebase Initzialisation
+        mAuth =FirebaseAuth.getInstance();
 
+        // Firebase listener
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                // Firebase user logged
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                // Check if user is signed in or not
+                if (user != null)
+                {
+                    // Logged in
+                    Log.d(TAG, "User is now logged in as: " + user.getUid());
+                    Toast.makeText(MenuActivity.this, "User is now logged in as " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    // Logged in
+                    Log.d(TAG, "User is now logged out ");
+                    Toast.makeText(MenuActivity.this, "Signed Out", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+        // Hide Action bar
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
+        // Finding IDs
+        btnSignOut = (Button) findViewById(R.id.signOutButton);
+
+
+        // Menu Button Onclicks()
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+    }
+
+    // Sign out function for SIGN OUT BUTTON
+    public void signOut(){
+        Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
