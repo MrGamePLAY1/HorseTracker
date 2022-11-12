@@ -102,10 +102,10 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="86dp"
+                android:background="@drawable/buttoncurved_trans"
                 android:text="Sign Out"
+                android:textColor="@color/cardview_light_background"
                 android:textStyle="bold" />
 
         </LinearLayout>

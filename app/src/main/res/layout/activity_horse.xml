@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#131313"
+    tools:context=".HorseActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="50dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="Your Horses"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/horseName"
+                android:textColor="#fff"
+                android:textColorHint="#FFFFFF"
+                android:padding="15dp"
+                android:hint="Name"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@drawable/rounded_corner"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/horseHeight"
+                android:textColor="#fff"
+                android:textColorHint="#FFFFFF"
+                android:padding="15dp"
+                android:hint="Height"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@drawable/rounded_corner"
+                android:textSize="17sp" />
+
+            <RadioGroup
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/field1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15px"
+                    android:text="Field 1"
+                    android:textColor="@color/white"/>
+
+                <RadioButton
+                    android:id="@+id/field2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15px"
+                    android:text="Field 2"
+                    android:textColor="@color/white"/>
+
+                <RadioButton
+                    android:id="@+id/field3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15px"
+                    android:text="Field 3"
+                    android:textColor="@color/white"/>
+
+
+            </RadioGroup>
+
+
+            <Button
+                android:id="@+id/addHorse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
+                android:background="@drawable/buttoncurved_trans"
+                android:text="+"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/deleteHorse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:layout_marginLeft="220sp"
+                android:textColor="@color/cardview_light_background"
+                android:background="@drawable/buttoncurved_trans"
+                android:text="-"
+                android:textSize="20sp"/>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

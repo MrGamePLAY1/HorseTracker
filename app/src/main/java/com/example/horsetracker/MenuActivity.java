@@ -25,7 +25,7 @@ public class MenuActivity extends AppCompatActivity {
     private static final String TAG = "MenuActivity";
 
     //Menu Items
-    private Button btnSignOut, viewPlayers, viewEvents, viewNote, calendar;
+    private Button btnSignOut, viewHorse, viewEvents, viewNote, calendar;
 
     // Login cred
     public String email;
@@ -44,29 +44,26 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         // Firebase Initzialisation
-        mAuth =FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         // Firebase listener
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                // Firebase user logged
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+        mAuthListener = firebaseAuth -> {
+            // Firebase user logged
+            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                // Check if user is signed in or not
-                if (user != null)
-                {
-                    // Logged in
-                    Log.d(TAG, "User is now logged in as: " + user.getUid());
-                    Toast.makeText(MenuActivity.this, "User is now logged in as " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                }
+            // Check if user is signed in or not
+            if (user != null)
+            {
+                // Logged in
+                Log.d(TAG, "User is now logged in as: " + user.getUid());
+                Toast.makeText(MenuActivity.this, "User is now logged in as " + user.getEmail(), Toast.LENGTH_SHORT).show();
+            }
 
-                else
-                {
-                    // Logged in
-                    Log.d(TAG, "User is now logged out ");
-                    Toast.makeText(MenuActivity.this, "Signed Out", Toast.LENGTH_SHORT).show();
-                }
+            else
+            {
+                // Logged in
+                Log.d(TAG, "User is now logged out ");
+                Toast.makeText(MenuActivity.this, "Signed Out", Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -75,13 +72,25 @@ public class MenuActivity extends AppCompatActivity {
 
         // Finding IDs
         btnSignOut = (Button) findViewById(R.id.signOutButton);
+        viewHorse = (Button) findViewById(R.id.horses);
+
 
 
         // Menu Button Onclicks()
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mAuth.signOut();
+                signOut();
+            }
+        });
 
+        // View Horses OnClick()
+        viewHorse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Check if Signed in
+                viewHorses();
             }
         });
 
@@ -91,6 +100,11 @@ public class MenuActivity extends AppCompatActivity {
     // Sign out function for SIGN OUT BUTTON
     public void signOut(){
         Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void viewHorses(){
+        Intent intent = new Intent(MenuActivity.this, HorseActivity.class);
         startActivity(intent);
     }
 }
