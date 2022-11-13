@@ -84,7 +84,6 @@ public class HorseActivity extends AppCompatActivity {
         bind.addHorse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HorseActivity.this, "You clicked the button", Toast.LENGTH_SHORT).show();
                 submitHorse();
             }
         });
@@ -95,10 +94,14 @@ public class HorseActivity extends AppCompatActivity {
         // Add Shit From Form Code
         final String name = bind.horseName.getText().toString();
         final String height = bind.horseHeight.getText().toString();
+        final String ownerName = bind.horseOwner.getText().toString();
+        final String ownerNum = bind.horseOwnerNum.getText().toString();
 
         // Logging info
         Log.d(TAG, "Horses name = " + name);
         Log.d(TAG, "Horses height = " + height);
+        Log.d(TAG, "Horses Owner Name = " + ownerName);
+        Log.d(TAG, "Horses Owner Num = " + ownerNum);
 
 
         // required information
@@ -111,6 +114,18 @@ public class HorseActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(height))
         {
             bind.horseHeight.setError(REQUIRED);
+            return;
+        }
+
+        if (TextUtils.isEmpty(ownerName))
+        {
+            bind.horseOwner.setError(REQUIRED);
+            return;
+        }
+
+        if (TextUtils.isEmpty(ownerNum))
+        {
+            bind.horseOwnerNum.setError(REQUIRED);
             return;
         }
 
@@ -136,7 +151,7 @@ public class HorseActivity extends AppCompatActivity {
                         else
                         {
                             // Make new Horse
-                            addToDatabase(userID, name, Integer.parseInt(height));
+                            addToDatabase(userID, name, Integer.parseInt(height), ownerName, Integer.parseInt(ownerNum));
                         }
                     }
 
@@ -153,18 +168,17 @@ public class HorseActivity extends AppCompatActivity {
 
 
 
-    private void addToDatabase(String userID, String name, int height) {
+    private void addToDatabase(String userID, String name, int height, String ownerName, int ownerNum) {
         // code to add to database
         String key = myDatabase.child("horses").push().getKey();
-        Horse horse = new Horse(userID, name, height);
-
+        Horse horse = new Horse(userID, name, height, ownerName, ownerNum);
 
         // Map Entity
         Map<String, Object> horseValues = horse.toMap();
 
         // Map Child
         Map<String, Object> childUpdate = new HashMap<>();
-        childUpdate.put("user " + userID + "/" + "horse_id " + key, horseValues);
+        childUpdate.put("user_horses " + userID + "/" + "horse_id " + key, horseValues);
 
         // Update
         myDatabase.updateChildren(childUpdate);

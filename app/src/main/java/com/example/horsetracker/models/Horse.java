@@ -21,22 +21,23 @@ public class Horse {
     }
 
 
-    public Horse(String userID, String name, int height) {
+    public Horse(String userID, String name, int height, String ownerName, int ownerNumber) {
         this.name = name;
         this.height = height;
-
+        this.ownerName = ownerName;
+        this.ownerNumber = ownerNumber;
     }
 
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
-        result.put("name", name);
-        result.put("height", height);
-        result.put("wormed", wormed);
-        result.put("field", fieldPosition);
-        result.put("owner name", ownerName);
-        result.put("owner number", ownerNumber);
+        result.put("name", name); // String
+        result.put("height", height); // Int
+        result.put("wormed", wormed); // Boolean
+        result.put("field", fieldPosition); // Int
+        result.put("owner name", ownerName); // String
+        result.put("owner number", ownerNumber); // String
 
         return result;
     }

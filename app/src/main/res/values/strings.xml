@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">HorseTracker</string>
-    <string name="height_in_cm"><font size = "15">Height in cm</font></string>
+    <string name="height_in_cm"><font size = "15">Height (cm)</font></string>
     <string name="name"><font size = "15">Name</font></string>
-    <string name="your_horses"><font size = "25">Your Horse</font></string>
+    <string name="your_horses"><font size = "25">Add your Horse</font></string>
+    <string name="owner_num"><font size = "15">Owners Number</font></string>
+    <string name="horse_owner">Owners Name</string>
 </resources>

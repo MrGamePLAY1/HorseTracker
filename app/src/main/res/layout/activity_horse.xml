@@ -23,8 +23,8 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
                 android:text="@string/your_horses"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
@@ -41,12 +41,37 @@
                 android:background="@drawable/rounded_corner"
                 android:textSize="17sp" />
 
+
             <EditText
                 android:id="@+id/horseHeight"
                 android:textColor="#fff"
                 android:textColorHint="#FFFFFF"
                 android:padding="15dp"
                 android:hint="@string/height_in_cm"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@drawable/rounded_corner"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/horseOwner"
+                android:textColor="#fff"
+                android:textColorHint="#FFFFFF"
+                android:padding="15dp"
+                android:hint="@string/horse_owner"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@drawable/rounded_corner"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/horseOwnerNum"
+                android:textColor="#fff"
+                android:textColorHint="#FFFFFF"
+                android:padding="15dp"
+                android:hint="@string/owner_num"
                 android:layout_margin="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
@@ -84,26 +109,33 @@
                     android:textColor="@color/white"/>
             </RadioGroup>
 
-
-            <Button
-                android:id="@+id/addHorse"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/cardview_light_background"
-                android:background="@drawable/buttoncurved_trans"
-                android:text="+"
-                android:textSize="20sp" />
+                android:padding="0dp">
 
-            <Button
-                android:id="@+id/deleteHorse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:layout_marginLeft="220sp"
-                android:textColor="@color/cardview_light_background"
-                android:background="@drawable/buttoncurved_trans"
-                android:text="-"
-                android:textSize="20sp"/>
+
+                <Button
+                    android:id="@+id/addHorse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/cardview_light_background"
+                    android:background="@drawable/buttoncurved_trans"
+                    android:text="+"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/deleteHorse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0px"
+                    android:layout_marginLeft="220sp"
+                    android:textColor="@color/cardview_light_background"
+                    android:background="@drawable/buttoncurved_trans"
+                    android:text="-"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+
 
         </LinearLayout>
     </ScrollView>
