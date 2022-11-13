@@ -8,7 +8,7 @@
     tools:context=".HorseActivity">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:text="Your Horses"
+                android:text="@string/your_horses"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
 
@@ -34,7 +34,7 @@
                 android:textColor="#fff"
                 android:textColorHint="#FFFFFF"
                 android:padding="15dp"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:layout_margin="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
@@ -46,7 +46,7 @@
                 android:textColor="#fff"
                 android:textColorHint="#FFFFFF"
                 android:padding="15dp"
-                android:hint="Height"
+                android:hint="@string/height_in_cm"
                 android:layout_margin="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
@@ -82,8 +82,6 @@
                     android:layout_margin="15px"
                     android:text="Field 3"
                     android:textColor="@color/white"/>
-
-
             </RadioGroup>
 
 
@@ -106,9 +104,6 @@
                 android:background="@drawable/buttoncurved_trans"
                 android:text="-"
                 android:textSize="20sp"/>
-
-
-
 
         </LinearLayout>
     </ScrollView>

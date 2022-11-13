@@ -1,41 +1,29 @@
 package com.example.horsetracker.models;
 
+import android.text.Editable;
+
 import com.google.firebase.database.Exclude;
-import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Horse {
     public String uid;
-    public String name;
-    public double height;
+    public String name = null;
+    public int height = 0;
     public Boolean wormed;
-    public int fieldPosition;
-    public String ownerName;
-    public int ownerNumber;
+    public int fieldPosition = 0;
+    public String ownerName = null;
+    public int ownerNumber = 0;
 
     public Horse(){
         // Empty Constructor
     }
 
-    public Horse(String uid, String name, double height, Boolean wormed, int fieldPosition, String ownerName, int ownerNumber)
-    {
-        this.uid = uid;
+
+    public Horse(String userID, String name, int height) {
         this.name = name;
         this.height = height;
-        this.wormed = wormed;
-        this.fieldPosition = fieldPosition;
-        this.ownerName = ownerName;
-        this.ownerNumber = ownerNumber;
-    }
-
-    public Horse(String userID, String horseName, Boolean isWormed, int fieldPos, String ownerID)
-    {
-
-    }
-
-    public Horse(String userID, String name, String height) {
 
     }
 

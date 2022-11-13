@@ -1,11 +1,10 @@
 package com.example.horsetracker;
 
-import static com.google.api.FieldBehavior.REQUIRED;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.example.horsetracker.models.Horse;
 import com.example.horsetracker.models.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,13 +40,11 @@ public class HorseActivity extends AppCompatActivity {
     }
 
     // Variables
-    private Button addHorse, removeHorse;
+    private Button addNewHorse, removeHorse;
     private EditText horseName, horseHeight;
     private RadioButton f1, f2, f3;
 
     // DB
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myDatabase;
 
     // New Horse Binding
@@ -59,62 +55,39 @@ public class HorseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horse);
 
-        // Firebasae
-        mAuth = FirebaseAuth.getInstance();
-
         // Horse bind
         bind = ActivityHorseBinding.inflate(getLayoutInflater());
         setContentView(bind.getRoot());
 
-        // Firebase listener
-        mAuthListener = firebaseAuth -> {
-            // Firebase user logged
-            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-            // Check if user is signed in or not
-            if (user != null)
-            {
-                // Logged in
-                Log.d(TAG, "User is now logged in as: " + user.getUid());
-                // Toast.makeText(HorseActivity.this, "User is now logged in as " + user.getEmail(), Toast.LENGTH_SHORT).show();
+        // Hide Action bar
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
+        // Finding the IDs
+        addNewHorse = (Button) findViewById(R.id.addHorse);
+        removeHorse = (Button) findViewById(R.id.deleteHorse);
+        horseName = (EditText) findViewById(R.id.horseName);
+        horseHeight = (EditText) findViewById(R.id.horseHeight);
+        f1 = (RadioButton) findViewById(R.id.field1);
+        f2 = (RadioButton) findViewById(R.id.field2);
+        f3 = (RadioButton) findViewById(R.id.field3);
+
+        // Making the Database
+        // Getting the UID
+        final String uid = getUID();
+        Log.d(TAG, "Clients UID: " + getUID());
+
+        // Database work
+        myDatabase = FirebaseDatabase.getInstance().getReference();
+
+        // Listeners
+        bind.addHorse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HorseActivity.this, "You clicked the button", Toast.LENGTH_SHORT).show();
+                submitHorse();
             }
-
-            else
-            {
-                // Logged in
-                Log.d(TAG, "User is now logged out ");
-                // Toast.makeText(HorseActivity.this, "Signed Out", Toast.LENGTH_SHORT).show();
-            }
-
-            // Hide Action bar
-            Objects.requireNonNull(getSupportActionBar()).hide();
-
-            // Finding the IDs
-            addHorse = (Button) findViewById(R.id.addHorse);
-            removeHorse = (Button) findViewById(R.id.deleteHorse);
-            horseName = (EditText) findViewById(R.id.horseName);
-            horseHeight = (EditText) findViewById(R.id.horseHeight);
-            f1 = (RadioButton) findViewById(R.id.field1);
-            f2 = (RadioButton) findViewById(R.id.field2);
-            f3 = (RadioButton) findViewById(R.id.field3);
-
-            // Making the Database
-            // Getting the UID
-            final String uid = getUID();
-            Log.d(TAG, "Clients UID: " + getUID());
-
-            // Database work
-            myDatabase = FirebaseDatabase.getInstance().getReference();
-
-            // Listeners
-            bind.addHorse.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    submitHorse();
-                }
-            });
-
-        };
+        });
     }
 
     public void submitHorse()
@@ -122,6 +95,11 @@ public class HorseActivity extends AppCompatActivity {
         // Add Shit From Form Code
         final String name = bind.horseName.getText().toString();
         final String height = bind.horseHeight.getText().toString();
+
+        // Logging info
+        Log.d(TAG, "Horses name = " + name);
+        Log.d(TAG, "Horses height = " + height);
+
 
         // required information
         if (TextUtils.isEmpty(name))
@@ -141,7 +119,7 @@ public class HorseActivity extends AppCompatActivity {
 
         // Database Work
         final String userID = getUID();
-        myDatabase.child("horses").child(userID).addListenerForSingleValueEvent(
+        myDatabase.child("users").child(userID).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -158,7 +136,7 @@ public class HorseActivity extends AppCompatActivity {
                         else
                         {
                             // Make new Horse
-                            addToDatabase(userID, name, height);
+                            addToDatabase(userID, name, Integer.parseInt(height));
                         }
                     }
 
@@ -168,19 +146,25 @@ public class HorseActivity extends AppCompatActivity {
                     }
                 }
         );
+
+
     }
 
-    private void addToDatabase(String userID, String name, String height) {
+
+
+
+    private void addToDatabase(String userID, String name, int height) {
         // code to add to database
         String key = myDatabase.child("horses").push().getKey();
         Horse horse = new Horse(userID, name, height);
+
 
         // Map Entity
         Map<String, Object> horseValues = horse.toMap();
 
         // Map Child
         Map<String, Object> childUpdate = new HashMap<>();
-        childUpdate.put(userID + "/horse/" + "/" + key, horseValues);
+        childUpdate.put("user " + userID + "/" + "horse_id " + key, horseValues);
 
         // Update
         myDatabase.updateChildren(childUpdate);
@@ -191,21 +175,4 @@ public class HorseActivity extends AppCompatActivity {
         // To Do Code
     }
 
-    public void addToDatabase(String userID, String hName, double height,  Boolean isWormed, int fieldPos, String ownerName, int ownNum)
-    {
-        // code to add to database
-        String key = myDatabase.child("horses").push().getKey();
-        Horse horse = new Horse(userID, hName, height, isWormed, fieldPos, ownerName, ownNum);
-
-        // Map Entity
-        Map<String, Object> horseValues = horse.toMap();
-
-        // Map Child
-        Map<String, Object> childUpdate = new HashMap<>();
-        childUpdate.put(userID + "/horse/" + "/" + key, horseValues);
-
-        // Update
-        myDatabase.updateChildren(childUpdate);
-
-    }
 }
