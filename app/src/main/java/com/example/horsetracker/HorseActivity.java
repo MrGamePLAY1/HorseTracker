@@ -3,6 +3,7 @@ package com.example.horsetracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -41,7 +42,7 @@ public class HorseActivity extends AppCompatActivity {
 
     // Variables
     private Button addNewHorse, removeHorse;
-    private EditText horseName, horseHeight;
+    private EditText horseName, horseHeight, horseOwner;
     private RadioButton f1, f2, f3;
 
     // DB
@@ -68,6 +69,7 @@ public class HorseActivity extends AppCompatActivity {
         removeHorse = (Button) findViewById(R.id.deleteHorse);
         horseName = (EditText) findViewById(R.id.horseName);
         horseHeight = (EditText) findViewById(R.id.horseHeight);
+        horseOwner = (EditText) findViewById(R.id.horseOwner);
         f1 = (RadioButton) findViewById(R.id.field1);
         f2 = (RadioButton) findViewById(R.id.field2);
         f3 = (RadioButton) findViewById(R.id.field3);
@@ -85,6 +87,9 @@ public class HorseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 submitHorse();
+                horseName.getText().clear();
+                horseHeight.getText().clear();
+                horseOwner.getText().clear();
             }
         });
     }
@@ -95,13 +100,11 @@ public class HorseActivity extends AppCompatActivity {
         final String name = bind.horseName.getText().toString();
         final String height = bind.horseHeight.getText().toString();
         final String ownerName = bind.horseOwner.getText().toString();
-        final String ownerNum = bind.horseOwnerNum.getText().toString();
 
         // Logging info
         Log.d(TAG, "Horses name = " + name);
         Log.d(TAG, "Horses height = " + height);
         Log.d(TAG, "Horses Owner Name = " + ownerName);
-        Log.d(TAG, "Horses Owner Num = " + ownerNum);
 
 
         // required information
@@ -123,11 +126,6 @@ public class HorseActivity extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(ownerNum))
-        {
-            bind.horseOwnerNum.setError(REQUIRED);
-            return;
-        }
 
         // Submitting message
         Toast.makeText(this, "Uploading", Toast.LENGTH_SHORT).show();
@@ -151,7 +149,7 @@ public class HorseActivity extends AppCompatActivity {
                         else
                         {
                             // Make new Horse
-                            addToDatabase(userID, name, Integer.parseInt(height), ownerName, Integer.parseInt(ownerNum));
+                            addToDatabase(userID, name, Integer.parseInt(height), ownerName);
                         }
                     }
 
@@ -161,17 +159,15 @@ public class HorseActivity extends AppCompatActivity {
                     }
                 }
         );
-
-
     }
 
 
 
 
-    private void addToDatabase(String userID, String name, int height, String ownerName, int ownerNum) {
+    private void addToDatabase(String userID, String name, int height, String ownerName) {
         // code to add to database
         String key = myDatabase.child("horses").push().getKey();
-        Horse horse = new Horse(userID, name, height, ownerName, ownerNum);
+        Horse horse = new Horse(userID, name, height, ownerName);
 
         // Map Entity
         Map<String, Object> horseValues = horse.toMap();
@@ -188,5 +184,6 @@ public class HorseActivity extends AppCompatActivity {
     {
         // To Do Code
     }
+
 
 }

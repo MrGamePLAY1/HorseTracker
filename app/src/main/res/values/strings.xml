@@ -4,5 +4,5 @@
     <string name="name"><font size = "15">Name</font></string>
     <string name="your_horses"><font size = "25">Add your Horse</font></string>
     <string name="owner_num"><font size = "15">Owners Number</font></string>
-    <string name="horse_owner">Owners Name</string>
+    <string name="horse_owner"><font size = "15">Owners Name</font></string>
 </resources>
